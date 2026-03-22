@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Runner 3D - Endless Runner Game</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Tween.js for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="startScreen" class="screen">
+        <div class="screen-content">
+            <h1><i class="fas fa-subway"></i> SUBWAY RUNNER 3D</h1>
+            <p class="subtitle">An endless runner game inspired by Subway Surfers</p>
+            <div class="controls-info">
+                <h2><i class="fas fa-gamepad"></i> CONTROLS</h2>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <div class="key"><i class="fas fa-arrow-left"></i> LEFT</div>
+                        <span>Move Left Lane</span>
+                    </div>
+                    <div class="control-item">
+                        <div class="key"><i class="fas fa-arrow-right"></i> RIGHT</div>
+                        <span>Move Right Lane</span>
+                    </div>
+                    <div class="control-item">
+                        <div class="key"><i class="fas fa-arrow-up"></i> UP</div>
+                        <span>Jump</span>
+                    </div>
+                    <div class="control-item">
+                        <div class="key"><i class="fas fa-arrow-down"></i> DOWN</div>
+                        <span>Slide</span>
+                    </div>
+                </div>
+                <p class="tip">Avoid obstacles, collect coins, and run as far as you can!</p>
+            </div>
+            <button id="startButton" class="btn-primary">
+                <i class="fas fa-play"></i> START GAME
+            </button>
+            <div class="instructions">
+                <h3><i class="fas fa-info-circle"></i> HOW TO PLAY</h3>
+                <p>Your character runs automatically. Use arrow keys to switch lanes, jump over barriers, and slide under trains. The game speeds up over time!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="screen hidden">
+        <div class="screen-content">
+            <h1><i class="fas fa-skull-crossbones"></i> GAME OVER</h1>
+            <div class="stats">
+                <div class="stat">
+                    <h3>SCORE</h3>
+                    <p id="finalScore" class="stat-value">0</p>
+                </div>
+                <div class="stat">
+                    <h3>COINS</h3>
+                    <p id="finalCoins" class="stat-value">0</p>
+                </div>
+                <div class="stat">
+                    <h3>DISTANCE</h3>
+                    <p id="finalDistance" class="stat-value">0m</p>
+                </div>
+                <div class="stat">
+                    <h3>HIGH SCORE</h3>
+                    <p id="highScore" class="stat-value">0</p>
+                </div>
+            </div>
+            <button id="restartButton" class="btn-primary">
+                <i class="fas fa-redo"></i> PLAY AGAIN
+            </button>
+            <button id="menuButton" class="btn-secondary">
+                <i class="fas fa-home"></i> BACK TO MENU
+            </button>
+        </div>
+    </div>
+
+    <!-- Game UI -->
+    <div id="gameUI" class="hidden">
+        <div class="ui-top">
+            <div class="ui-box">
+                <i class="fas fa-coins"></i>
+                <span id="coinCount">0</span>
+            </div>
+            <div class="ui-box">
+                <i class="fas fa-tachometer-alt"></i>
+                <span id="speedMultiplier">1.0x</span>
+            </div>
+            <div class="ui-box">
+                <i class="fas fa-running"></i>
+                <span id="distance">0m</span>
+            </div>
+        </div>
+        <div class="ui-center">
+            <h1 id="score">0</h1>
+            <p class="score-label">SCORE</p>
+        </div>
+        <div class="ui-bottom">
+            <div class="lane-indicator">
+                <div class="lane-dot" data-lane="0"></div>
+                <div class="lane-dot active" data-lane="1"></div>
+                <div class="lane-dot" data-lane="2"></div>
+                <p>LANE</p>
+            </div>
+            <div class="controls-hint">
+                <p><i class="fas fa-arrows-alt-v"></i> Use ARROW KEYS to move</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading 3D assets...</p>
+        </div>
+    </div>
+
+    <!-- Audio Controls -->
+    <div class="audio-controls">
+        <button id="muteButton" class="btn-audio">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <!-- JavaScript Modules -->
+    <script src="js/gameManager.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/obstacleManager.js"></script>
+    <script src="js/uiManager.js"></script>
+    <script src="js/physics.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
